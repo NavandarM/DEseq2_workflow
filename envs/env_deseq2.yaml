@@ -1,0 +1,14 @@
+name: deseq2_env
+channels:
+  - conda-forge
+  - bioconda
+  - mpi-ie
+dependencies:
+  - r-base=4.1.0
+  - r-essentials
+  - bioconductor-deseq2
+  - r-ggplot2
+  - r-tidyverse
+  - conda-forge::r-ggrepel
+  - r-biocmanager
+

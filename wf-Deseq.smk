@@ -20,8 +20,10 @@ rule deseq2_analysis:
         metadata=MetaData
     output:
         result= os.path.join(Outdir,'TEsmallOut','deseq_results.done')
+    conda:
+        config["DeseqEnv"]
     shell:"""
-        Rscript runDeseq.R {input.counts} {input.metadata}
+        Rscript scripts/runDeseq.R {input.counts} {input.metadata}
         touch {output.result}
     
     """
