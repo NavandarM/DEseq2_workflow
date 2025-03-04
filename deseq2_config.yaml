@@ -1,0 +1,5 @@
+Indir: "/data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3467_Kim_Denboba/Results"
+Outdir: "/data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3467_Kim_Denboba/Results/TEsmallOut/"
+MetaData: "/data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3467_Kim_Denboba/Results/metaInfo.tsv"
+smallestGroupSize: 3
+DeseqEnv: "/data/manke/processing1/pipegrp/software/YAMLS/env_deseq2.yaml"
