@@ -8,6 +8,11 @@ args <- commandArgs(trailingOnly = TRUE)
 # Access file paths from arguments
 counts_file <- args[1]
 metadata_file <- args[2]
+vsd_file <- args[3]
+nrc_file <- args[4]
+pca_file <- args[5]
+vol_file <- args[6]
+DE_file <- args[7]
 
 ## PCA function
 PCA_tm <- function(dds, groups="condition", trans_func=vst){
@@ -35,7 +40,7 @@ PCA_tm <- function(dds, groups="condition", trans_func=vst){
     theme(axis.text = element_text(size = 17)) +
     theme(axis.title = element_text(size = 17))
   
-  ggsave(filename = "pcaplot.pdf", plot = p, width = 12, height = 12, dpi = 300, units = "in")
+  ggsave(filename = pca_file, plot = p, width = 12, height = 12, dpi = 300, units = "in")
   return(p)
   
 }
@@ -48,7 +53,7 @@ VolcanoPlot <- function(res, padj_cutoff=0.05, label_length = 20) {
   Up <- filter[filter$log2FoldChange > 0, ]
   Down <- filter[filter$log2FoldChange < 0, ]
   
-  write.table(filter, "DEGs_GF_vs_Conv.txt", sep="\t", quote=F)
+  write.table(filter, DE_file, sep="\t", quote=F)
   
   # Get the top 20 upregulated and downregulated genes
   top_Up <- Up[order(-Up$log2FoldChange), ][1:label_length, ]
@@ -85,7 +90,7 @@ VolcanoPlot <- function(res, padj_cutoff=0.05, label_length = 20) {
           legend.spacing.y = unit(1, 'cm')) +  # Increase vertical spacing in legend
     guides(color = guide_legend(byrow = TRUE))  # Ensure each label appears in a separate row
   
-  ggsave(filename = "volcanoplot.pdf", plot = p, width = 12, height = 12, dpi = 300, units = "in")
+  ggsave(filename = vol_file, plot = p, width = 12, height = 12, dpi = 300, units = "in")
 }
 
 #### Actual code:
@@ -129,10 +134,10 @@ res <- results(dds,  name=resultsNames(dds)[2])
 res <- res %>% data.frame() %>% drop_na()
 
 NormalizedCounts <- counts(dds,normalized=TRUE)
-write.table(NormalizedCounts, "Normalized_Read_Counts.txt", sep='\t', quote = F)
+write.table(NormalizedCounts, nrc_file, sep='\t', quote = F)
 
 vsd <- vst(dds, blind=FALSE, fitType="local")
-write.table(assay(vsd), "VarianceStabilizedCounts.txt", sep='\t', quote = F)
+write.table(assay(vsd), vsd_file, sep='\t', quote = F)
 
 VolcanoPlot(res, 0.1, 10)
 PCA_tm(dds)

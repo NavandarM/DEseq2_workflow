@@ -1,0 +1,31 @@
+host: maximus.ie-freiburg.mpg.de
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 128
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job                count
+---------------  -------
+all                    1
+deseq2_analysis        1
+total                  2
+
+Select jobs to execute...
+Execute 1 jobs...
+
+[Wed Mar  5 14:32:38 2025]
+localrule deseq2_analysis:
+    input: /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3467_Kim_Denboba/Results/TEsmallOut/count_summary.txt, /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3467_Kim_Denboba/Results/metaInfo.tsv
+    output: /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3467_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/VarianceStabilizedCounts.txt, /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3467_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/Normalized_Read_Counts.txt, /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3467_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/Pcaplot.pdf, /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3467_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/volcanoplot.pdf, /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3467_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/DEGs_GF_vs_Conv.txt, /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3467_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/deseq_results.done
+    jobid: 1
+    reason: Missing output files: /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3467_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/volcanoplot.pdf, /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3467_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/DEGs_GF_vs_Conv.txt, /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3467_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/Pcaplot.pdf, /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3467_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/deseq_results.done, /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3467_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/VarianceStabilizedCounts.txt, /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3467_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/Normalized_Read_Counts.txt
+    resources: tmpdir=/tmp
+
+RuleException in rule deseq2_analysis in file /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3467_Kim_Denboba/Results/DEseq2_TEsmall/wf-Deseq.smk, line 22:
+AttributeError: 'OutputFiles' object has no attribute 'result', when formatting the following:
+
+        Rscript scripts/runDeseq.R {input.counts} {input.metadata} {output.vsc} {output.nrc} {output.pca} {output.vol} {output.DE}
+        touch {output.result}
+    
+    
