@@ -1,0 +1,43 @@
+host: maximus.ie-freiburg.mpg.de
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 128
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job                count
+---------------  -------
+all                    1
+deseq2_analysis        1
+total                  2
+
+Select jobs to execute...
+Execute 1 jobs...
+
+[Wed Mar  5 15:14:06 2025]
+localrule deseq2_analysis:
+    input: /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/TEsmallOut/count_summary.txt, /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/DEseq2_TEsmall/metaInfo.tsv
+    output: /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/VarianceStabilizedCounts.txt, /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/Normalized_Read_Counts.txt, /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/Pcaplot.pdf, /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/volcanoplot.pdf, /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/DEGs_GF_vs_Conv.txt, /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/deseq_results.done
+    jobid: 1
+    reason: Missing output files: /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/Pcaplot.pdf, /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/Normalized_Read_Counts.txt, /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/VarianceStabilizedCounts.txt, /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/DEGs_GF_vs_Conv.txt, /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/deseq_results.done, /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/volcanoplot.pdf
+    resources: tmpdir=/tmp
+
+[Wed Mar  5 15:14:23 2025]
+Error in rule deseq2_analysis:
+    jobid: 1
+    input: /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/TEsmallOut/count_summary.txt, /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/DEseq2_TEsmall/metaInfo.tsv
+    output: /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/VarianceStabilizedCounts.txt, /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/Normalized_Read_Counts.txt, /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/Pcaplot.pdf, /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/volcanoplot.pdf, /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/DEGs_GF_vs_Conv.txt, /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/deseq_results.done
+    conda-env: /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/DEseq2_TEsmall/.snakemake/conda/7a804b181e331fea7a7541fdd9907548_
+    shell:
+        
+        Rscript scripts/runDeseq.R /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/TEsmallOut/count_summary.txt /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/DEseq2_TEsmall/metaInfo.tsv /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/VarianceStabilizedCounts.txt /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/Normalized_Read_Counts.txt /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/Pcaplot.pdf /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/volcanoplot.pdf /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/DEGs_GF_vs_Conv.txt
+        touch /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/deseq_results.done
+    
+    
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2025-03-05T151406.180267.snakemake.log
+WorkflowError:
+At least one job did not complete successfully.

@@ -21,7 +21,7 @@ rule all:
 
 rule deseq2_analysis:
     input:
-        counts= os.path.join(Indir, 'TEsmallOut','count_summary.txt'),
+        counts= os.path.join(Indir,'count_summary.txt'),
         metadata= MetaData
     output:
         vsc = os.path.join(Outdir, 'DEoutput','VarianceStabilizedCounts.txt'),

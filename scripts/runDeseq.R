@@ -93,10 +93,35 @@ VolcanoPlot <- function(res, padj_cutoff=0.05, label_length = 20) {
   ggsave(filename = vol_file, plot = p, width = 12, height = 12, dpi = 300, units = "in")
 }
 
+
+reorder_columns <- function(counts_file, metadata_file) {
+  library(dplyr)
+  
+  counts <- counts_file
+  
+  metadata <- metadata_file
+  
+  ordered_samples <- metadata$sample
+  
+  fixed_cols <- c("fid", "ftype")
+  
+  matching_samples <- intersect(ordered_samples, colnames(counts))
+  
+  counts_reordered <- counts %>%
+    select(all_of(c(fixed_cols, matching_samples)))
+  
+  print("Columns have been reordered based on metadata.")
+  return(counts_reordered)
+}
+
 #### Actual code:
 
+print ("____________________________________ Load the file ____________________________________")
 Undata <- read.delim(counts_file)
-data <- Undata
+colnames(Undata)
+print("=============+++++++++++++++++====================\n")
+metadata <- read.delim(metadata_file)
+data <- reorder_columns (Undata, metadata )
 colnames(data)
 data$Ids <- make.unique(data$fid)
 Count_Matrix <- data
@@ -105,7 +130,7 @@ data$ftype <- NULL
 row.names(data) <- data$Ids
 data$Ids <- NULL
 
-metadata <- read.delim(metadata_file)
+
 metadata$sample <- as.factor(metadata$sample)
 metadata$condition <- as.factor(metadata$condition)
 
