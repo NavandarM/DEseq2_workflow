@@ -1,8 +1,0 @@
-host: maximus.ie-freiburg.mpg.de
-Building DAG of jobs...
-MissingInputException in rule deseq2_analysis in file /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/DEseq2_TEsmall/wf-Deseq.smk, line 22:
-Missing input files for rule deseq2_analysis:
-    output: /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/VarianceStabilizedCounts.txt, /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/Normalized_Read_Counts.txt, /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/Pcaplot.pdf, /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/volcanoplot.pdf, /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/DEGs_GF_vs_Conv.txt, /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/DEseq2_TEsmall/DEoutput/deseq_results.done
-    affected files:
-        /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/DEseq2_TEsmall/metaInfo.tsv
-        /data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/TEsmallOut/TEsmallOut/count_summary.txt
