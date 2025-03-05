@@ -1,5 +1,5 @@
-Indir: "/data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3467_Kim_Denboba/Results"
-Outdir: "/data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3467_Kim_Denboba/Results/DEseq2_TEsmall/"
-MetaData: "/data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3467_Kim_Denboba/Results/metaInfo.tsv"
+Indir: "/data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/TEsmallOut/"
+Outdir: "/data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/DEseq2_TEsmall/"
+MetaData: "/data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/DEseq2_TEsmall/metaInfo.tsv"
 smallestGroupSize: 3
 DeseqEnv: "envs/env_deseq2.yaml"

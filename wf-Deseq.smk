@@ -11,7 +11,7 @@ smallestGroupSize = config['smallestGroupSize']
 
 rule all:
     input:
-        expand(os.path.join(Indir, 'TEsmallOut','count_summary.txt')),
+        expand(os.path.join(Indir,'count_summary.txt')),
         expand(os.path.join(Outdir, 'DEoutput','VarianceStabilizedCounts.txt')),
         expand(os.path.join(Outdir, 'DEoutput','Normalized_Read_Counts.txt')),
         expand(os.path.join(Outdir, 'DEoutput','Pcaplot.pdf')),
@@ -22,7 +22,7 @@ rule all:
 rule deseq2_analysis:
     input:
         counts= os.path.join(Indir, 'TEsmallOut','count_summary.txt'),
-        metadata=MetaData
+        metadata= MetaData
     output:
         vsc = os.path.join(Outdir, 'DEoutput','VarianceStabilizedCounts.txt'),
         nrc = os.path.join(Outdir, 'DEoutput','Normalized_Read_Counts.txt'),
@@ -38,4 +38,3 @@ rule deseq2_analysis:
         touch {output.flag}
     
     """
-    
