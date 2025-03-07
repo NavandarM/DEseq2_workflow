@@ -16,7 +16,6 @@ rule all:
         expand(os.path.join(Outdir, 'DEoutput','Normalized_Read_Counts.txt')),
         expand(os.path.join(Outdir, 'DEoutput','Pcaplot.pdf')),
         expand(os.path.join(Outdir, 'DEoutput','volcanoplot.pdf')),
-        expand(os.path.join(Outdir, 'DEoutput','DEGs_GF_vs_Conv.txt')),
         expand(os.path.join(Outdir, 'DEoutput','deseq_results.done'))
 
 rule deseq2_analysis:
@@ -28,13 +27,14 @@ rule deseq2_analysis:
         nrc = os.path.join(Outdir, 'DEoutput','Normalized_Read_Counts.txt'),
         pca = os.path.join(Outdir, 'DEoutput','Pcaplot.pdf'),
         vol = os.path.join(Outdir, 'DEoutput','volcanoplot.pdf'),
-        DE = os.path.join(Outdir, 'DEoutput','DEGs_GF_vs_Conv.txt'),
         flag = os.path.join(Outdir, 'DEoutput','deseq_results.done')
+    params:
+        DE = os.path.join(Outdir, 'DEoutput')
 
     conda:
         config["DeseqEnv"]
     shell:"""
-        Rscript scripts/runDeseq.R {input.counts} {input.metadata} {output.vsc} {output.nrc} {output.pca} {output.vol} {output.DE}
+        Rscript scripts/runDeseq.R {input.counts} {input.metadata} {output.vsc} {output.nrc} {output.pca} {output.vol} {params.DE}
         touch {output.flag}
     
     """

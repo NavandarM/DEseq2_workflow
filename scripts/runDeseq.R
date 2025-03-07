@@ -47,13 +47,13 @@ PCA_tm <- function(dds, groups="condition", trans_func=vst){
 
 ##############
 
-VolcanoPlot <- function(res, padj_cutoff=0.05, label_length = 20) {
+VolcanoPlot <- function(res, padj_cutoff=0.05, label_length = 20, Name=Name) {
   # Filter significant genes based on padj_cutoff
   filter <- res[res$padj < padj_cutoff, ]
   Up <- filter[filter$log2FoldChange > 0, ]
   Down <- filter[filter$log2FoldChange < 0, ]
   
-  write.table(filter, DE_file, sep="\t", quote=F)
+  write.table(filter, paste0(DE_file,"/","DEG_",Name,".txt"), sep="\t", quote=F)
   
   # Get the top 20 upregulated and downregulated genes
   top_Up <- Up[order(-Up$log2FoldChange), ][1:label_length, ]
@@ -164,5 +164,6 @@ write.table(NormalizedCounts, nrc_file, sep='\t', quote = F)
 vsd <- vst(dds, blind=FALSE, fitType="local")
 write.table(assay(vsd), vsd_file, sep='\t', quote = F)
 
-VolcanoPlot(res, 0.1, 10)
+VolcanoPlot(res, 0.1, 10, Name)
 PCA_tm(dds)
+save.image(file = "session.RData")
