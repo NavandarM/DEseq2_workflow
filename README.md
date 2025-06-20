@@ -11,4 +11,3 @@ Edit the config file and update below variables:
 -   Outdir
 -   MetaData
 -   smallestGroupSize (Smallest number of samples per group)
--   DeseqEnv
