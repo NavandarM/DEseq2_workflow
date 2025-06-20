@@ -1,6 +1,5 @@
 # DEseq2_TEsmall
-Differential expression analysis: small RNA
-
+Differential expression analysis: small RNA (output specificially from <a href="https://github.com/mhammell-laboratory/TEsmall">TEsmall</a> or any tubular raw expression count data)
 Usages: snakemake -s wf-Deseq.smk 
 
 snakemake pipeline for the DE small RNAs
