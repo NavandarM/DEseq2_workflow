@@ -1,0 +1,55 @@
+Assuming unrestricted shared filesystem usage.
+None
+host: pc379
+Migrating .snakemake folder to new format...
+Migration complete
+Building DAG of jobs...
+Traceback (most recent call last):
+
+  File "/localenv/navandar/miniconda3/lib/python3.11/site-packages/snakemake/cli.py", line 2172, in args_to_api
+    dag_api.execute_workflow(
+
+  File "/localenv/navandar/miniconda3/lib/python3.11/site-packages/snakemake/api.py", line 606, in execute_workflow
+    workflow.execute(
+
+  File "/localenv/navandar/miniconda3/lib/python3.11/site-packages/snakemake/workflow.py", line 1225, in execute
+    self._build_dag()
+
+  File "/localenv/navandar/miniconda3/lib/python3.11/site-packages/snakemake/workflow.py", line 1171, in _build_dag
+    async_run(self.dag.init())
+
+  File "/localenv/navandar/miniconda3/lib/python3.11/site-packages/snakemake/common/__init__.py", line 99, in async_run
+    return asyncio.run(coroutine)
+           ^^^^^^^^^^^^^^^^^^^^^^
+
+  File "/localenv/navandar/miniconda3/lib/python3.11/asyncio/runners.py", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+
+  File "/localenv/navandar/miniconda3/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  File "/localenv/navandar/miniconda3/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+
+  File "/localenv/navandar/miniconda3/lib/python3.11/site-packages/snakemake/dag.py", line 215, in init
+    job = await self.update([job], progress=progress, create_inventory=True)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  File "/localenv/navandar/miniconda3/lib/python3.11/site-packages/snakemake/dag.py", line 1092, in update
+    await self.update_(
+
+  File "/localenv/navandar/miniconda3/lib/python3.11/site-packages/snakemake/dag.py", line 1218, in update_
+    await res.file.inventory()
+
+  File "/localenv/navandar/miniconda3/lib/python3.11/site-packages/snakemake/io/__init__.py", line 338, in inventory
+    await asyncio.gather(*tasks)
+
+  File "/localenv/navandar/miniconda3/lib/python3.11/site-packages/snakemake/io/__init__.py", line 363, in _local_inventory
+    with os.scandir(path) as scan:
+         ^^^^^^^^^^^^^^^^
+
+NotADirectoryError: [Errno 20] Not a directory: '/home/navandar/Projects/Denboba_lab/GenVsControl/raw_counts_for_deseq2.txt'
+

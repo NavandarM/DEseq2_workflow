@@ -2,7 +2,6 @@ library("ggplot2")
 library("ggrepel")
 library("tidyverse")
 library("DESeq2")
-
 args <- commandArgs(trailingOnly = TRUE)
 
 # Access file paths from arguments
@@ -13,9 +12,10 @@ nrc_file <- args[4]
 pca_file <- args[5]
 vol_file <- args[6]
 DE_file <- args[7]
+Type <- args[8]
 
 ## PCA function
-PCA_tm <- function(dds, groups="condition", trans_func=vst){
+PCA_tm <- function(dds, groups="condition", trans_func=varianceStabilizingTransformation){
 
   # Define color and shape variables - set to NULL if not used
   color_var <- if( length(groups) > 0) { sym(groups[1]) } else { NULL }
@@ -114,19 +114,25 @@ reorder_columns <- function(counts_file, metadata_file) {
   return(counts_reordered)
 }
 
-#### Actual code:
-
+print(metadata_file)
+#### Actual code:")
 print ("____________________________________ Load the file ____________________________________")
 Undata <- read.delim(counts_file)
-colnames(Undata)
 print("=============+++++++++++++++++====================\n")
 metadata <- read.delim(metadata_file)
-data <- reorder_columns (Undata, metadata )
-colnames(data)
-data$Ids <- make.unique(data$fid)
+
+if ("smallRNA" %in% Type) {
+  data <- reorder_columns (Undata, metadata )
+}else{
+  data <- Undata
+}
+colnames(data)[1] <- "Ids"
 Count_Matrix <- data
-data$fid <- NULL
-data$ftype <- NULL
+
+if ("ftype" %in% names(data)) {
+  data$ftype <- NULL
+}
+
 row.names(data) <- data$Ids
 data$Ids <- NULL
 
@@ -140,7 +146,7 @@ dds <- DESeqDataSetFromMatrix(countData = data,
                               colData = metadata,
                               design= Design)
 
-smallestGroupSize <- 3
+smallestGroupSize <- 5
 keep <- rowSums(counts(dds) >= 10) >= smallestGroupSize
 dds <- dds[keep,]
 
@@ -161,7 +167,7 @@ res <- res %>% data.frame() %>% drop_na()
 NormalizedCounts <- counts(dds,normalized=TRUE)
 write.table(NormalizedCounts, nrc_file, sep='\t', quote = F)
 
-vsd <- vst(dds, blind=FALSE, fitType="local")
+vsd <- varianceStabilizingTransformation(dds, blind=FALSE, fitType="local")
 write.table(assay(vsd), vsd_file, sep='\t', quote = F)
 
 VolcanoPlot(res, 0.1, 10, Name)

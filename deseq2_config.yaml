@@ -1,5 +1,5 @@
-Indir: "/data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/Results/TEsmallOut"
-Outdir: "/data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/DEseq2_TEsmall/"
-MetaData: "/data/manke/processing1/pipegrp/smRNAPipeline/Analysis_3469_Kim_Denboba/DEseq2_TEsmall/metaInfo.tsv"
+Indir: "/home/navandar/Projects/Denboba_lab/GenVsControl/raw_counts_for_deseq2.txt"
+Outdir: "/home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/"
+MetaData: "/home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/metaInfo.tsv"
 smallestGroupSize: 5
 DeseqEnv: "envs/env_deseq2.yaml"

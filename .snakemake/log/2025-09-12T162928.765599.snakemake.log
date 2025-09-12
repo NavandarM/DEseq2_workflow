@@ -1,0 +1,53 @@
+Assuming unrestricted shared filesystem usage.
+None
+host: maximus.ie-freiburg.mpg.de
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 128
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job                count
+---------------  -------
+all                    1
+deseq2_analysis        1
+total                  2
+
+Select jobs to execute...
+Execute 1 jobs...
+[Fri Sep 12 16:29:29 2025]
+localrule deseq2_analysis:
+    input: /home/navandar/Projects/Denboba_lab/GenVsControl/raw_counts_for_deseq2.txt, /home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/metaInfo.tsv
+    output: /home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/DEoutput/DEoutput/VarianceStabilizedCounts.txt, /home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/DEoutput/DEoutput/Normalized_Read_Counts.txt, /home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/DEoutput/DEoutput/Pcaplot.pdf, /home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/DEoutput/DEoutput/volcanoplot.pdf, /home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/DEoutput/DEoutput/deseq_results.done
+    jobid: 1
+    reason: Missing output files: /home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/DEoutput/DEoutput/Normalized_Read_Counts.txt, /home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/DEoutput/DEoutput/Pcaplot.pdf, /home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/DEoutput/DEoutput/deseq_results.done, /home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/DEoutput/DEoutput/volcanoplot.pdf, /home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/DEoutput/DEoutput/VarianceStabilizedCounts.txt
+    resources: tmpdir=/tmp
+
+Waiting for more resources.
+Waiting at most 5 seconds for missing files:
+/home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/DEoutput/DEoutput/Pcaplot.pdf (missing locally)
+/home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/DEoutput/DEoutput/volcanoplot.pdf (missing locally)
+MissingOutputException in rule deseq2_analysis in file "/home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/wf-Deseq.smk", line 21:
+Job 1  completed successfully, but some output files are missing. Missing files after 5 seconds. This might be due to filesystem latency. If that is the case, consider to increase the wait time with --latency-wait:
+/home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/DEoutput/DEoutput/Pcaplot.pdf (missing locally, parent dir contents: VarianceStabilizedCounts.txt, Normalized_Read_Counts.txt, deseq_results.done)
+/home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/DEoutput/DEoutput/volcanoplot.pdf (missing locally, parent dir contents: VarianceStabilizedCounts.txt, Normalized_Read_Counts.txt, deseq_results.done)
+Removing output files of failed job deseq2_analysis since they might be corrupted:
+/home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/DEoutput/DEoutput/VarianceStabilizedCounts.txt, /home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/DEoutput/DEoutput/Normalized_Read_Counts.txt, /home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/DEoutput/DEoutput/deseq_results.done
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look below for error messages
+[Fri Sep 12 16:29:48 2025]
+Error in rule deseq2_analysis:
+    message: None
+    jobid: 1
+    input: /home/navandar/Projects/Denboba_lab/GenVsControl/raw_counts_for_deseq2.txt, /home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/metaInfo.tsv
+    output: /home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/DEoutput/DEoutput/VarianceStabilizedCounts.txt, /home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/DEoutput/DEoutput/Normalized_Read_Counts.txt, /home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/DEoutput/DEoutput/Pcaplot.pdf, /home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/DEoutput/DEoutput/volcanoplot.pdf, /home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/DEoutput/DEoutput/deseq_results.done
+    shell:
+        
+        Rscript scripts/runDeseq.R /home/navandar/Projects/Denboba_lab/GenVsControl/raw_counts_for_deseq2.txt /home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/metaInfo.tsv /home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/DEoutput/DEoutput/VarianceStabilizedCounts.txt /home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/DEoutput/DEoutput/Normalized_Read_Counts.txt /home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/DEoutput/DEoutput/Pcaplot.pdf /home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/DEoutput/DEoutput/volcanoplot.pdf /home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/DEoutput/DEoutput
+        touch /home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/DEoutput/DEoutput/deseq_results.done
+    
+    
+        (command exited with non-zero exit code)
+Complete log(s): /home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/.snakemake/log/2025-09-12T162928.765599.snakemake.log
+WorkflowError:
+At least one job did not complete successfully.
