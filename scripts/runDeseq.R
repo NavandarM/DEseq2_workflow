@@ -45,11 +45,11 @@ PCA_tm <- function(dds, groups="condition", trans_func=varianceStabilizingTransf
 
 VolcanoPlot <- function(res, padj_cutoff=0.05, label_length = 20, Name=Name) {
 
-  filter <- res[res$padj < padj_cutoff, ]
-  Up <- filter[filter$log2FoldChange > 0, ]
-  Down <- filter[filter$log2FoldChange < 0, ]
+  Filtered <- res[res$padj < padj_cutoff, ]
+  Up <- Filtered[Filtered$log2FoldChange > 0, ]
+  Down <- Filtered[Filtered$log2FoldChange < 0, ]
   
-  write.table(filter, paste0(DE_file,"/","DEG_",Name,".txt"), sep="\t", quote=F)
+  write.table(Filtered, paste0(DE_file,"/","DEG_",Name,".txt"), sep="\t", quote=F)
   
   top_Up <- Up[order(-Up$log2FoldChange), ][1:label_length, ]
   top_Up$Names <- sub("^([^:]+:[^:]+):.*", "\\1", row.names(top_Up))
@@ -70,7 +70,7 @@ VolcanoPlot <- function(res, padj_cutoff=0.05, label_length = 20, Name=Name) {
     scale_color_manual(name="", 
                        values=c('FALSE'='#7f7f7f', 'TRUE'='#f62728'),
                        labels=legend_labels) +
-    
+    xlim(-abs(min(res$log2FoldChange)), abs(min(res$log2FoldChange))) + 
     geom_text_repel(data=top_genes, aes(label=Names),
                     size=4, max.overlaps=40) +
     
@@ -83,6 +83,21 @@ VolcanoPlot <- function(res, padj_cutoff=0.05, label_length = 20, Name=Name) {
     guides(color = guide_legend(byrow = TRUE))  
   
   ggsave(filename = vol_file, plot = p, width = 12, height = 12, dpi = 300, units = "in")
+
+  common_ids <- intersect(rownames(Filtered), rownames(NormalizedCounts))
+  Filtered_sub <- Filtered[common_ids, ]
+  Norm_sub <- NormalizedCounts[common_ids, ]
+  Merged <- cbind(Filtered_sub, Norm_sub)
+
+  if (!requireNamespace("pheatmap", quietly = TRUE)) {
+    install.packages("pheatmap", repos = "https://cloud.r-project.org/")
+  }
+  library(pheatmap)
+
+  heatmap_file = paste0(DE_file,"/","Heatmap_",Name,".pdf")
+  my_colors <- colorRampPalette(c("brown", "white", "blue"))(40)
+  pheatmap(Merged[,7:ncol(Merged)],filename = heatmap_file, scale = "row", color = my_colors,  fontsize_row = 8 , cluster_cols = F)
+
 }
 
 
@@ -108,15 +123,16 @@ reorder_columns <- function(counts_file, metadata_file) {
 
 print(metadata_file)
 
-print ("____________________________________ Load the file ____________________________________")
-Undata <- read.delim(counts_file)
-print("=============+++++++++++++++++====================\n")
+print (" Loading the files...")
+Undata <- read.delim(counts_file, check.names = FALSE)
 metadata <- read.delim(metadata_file)
+print("Files loaded!")
 
 if ("smallRNA" %in% Type) {
   data <- reorder_columns (Undata, metadata )
 }else{
-  data <- Undata
+  matching_samples <- intersect(metadata$sample, colnames(Undata))
+  data <- Undata[, c("Ids" = colnames(Undata)[1], matching_samples), drop = FALSE]
 }
 colnames(data)[1] <- "Ids"
 Count_Matrix <- data
@@ -164,4 +180,5 @@ write.table(assay(vsd), vsd_file, sep='\t', quote = F)
 
 VolcanoPlot(res, 0.1, 10, Name)
 PCA_tm(dds)
-save.image(file = "session.RData")
+save.image(file = "Robj/session.RData")
+
