@@ -1,5 +1,6 @@
-Indir: "/home/navandar/Projects/Denboba_lab/GenVsControl/raw_counts_for_deseq2.txt"
-Outdir: "/home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/"
+Indir: "/home/navandar/Projects/Denboba_lab/GenVsControl/abundance_table_species.tsv"
+Outdir: "/home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_abundance"
 MetaData: "/home/navandar/Projects/Denboba_lab/GenVsControl/DEseq2_TEsmall/metaInfo.tsv"
 smallestGroupSize: 5
 DeseqEnv: "envs/env_deseq2.yaml"
+Type: "" # specify if it is smallRNAs

@@ -8,6 +8,7 @@ Indir = config["Indir"]
 Outdir = config["Outdir"]
 MetaData = config["MetaData"]
 smallestGroupSize = config['smallestGroupSize']
+LType = config['Type']
 
 rule all:
     input:
@@ -28,12 +29,14 @@ rule deseq2_analysis:
         vol = os.path.join(Outdir, 'DEoutput','volcanoplot.pdf'),
         flag = os.path.join(Outdir, 'DEoutput','deseq_results.done')
     params:
-        DE = os.path.join(Outdir, 'DEoutput')
+        DE = os.path.join(Outdir, 'DEoutput'),
+        groupSz = smallestGroupSize,
+        Type=LType
 
     conda:
         config["DeseqEnv"]
     shell:"""
-        Rscript scripts/runDeseq.R {input.counts} {input.metadata} {output.vsc} {output.nrc} {output.pca} {output.vol} {params.DE}
+        Rscript scripts/runDeseq.R {input.counts} {input.metadata} {output.vsc} {output.nrc} {output.pca} {output.vol} {params.DE} {params.groupSz} {params.Type}
         touch {output.flag}
     
     """
