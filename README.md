@@ -1,7 +1,7 @@
 # DEseq2_workflow
-Differential expression analysis: 
-- DEG analysis between two conditions
-- Metagenomic differential microbial community
+Differential analysis: 
+- Differential gene expression analysis: between two conditions
+- Metagenomics: differential microbial community
 - small RNA (output specificially from <a href="https://github.com/mhammell-laboratory/TEsmall">TEsmall</a> or any tubular raw expression count data)
 <br><br>
 Usages: snakemake -s wf-Deseq.smk 
