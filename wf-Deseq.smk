@@ -36,7 +36,7 @@ rule deseq2_analysis:
     conda:
         config["DeseqEnv"]
     shell:"""
-        mkdir Robj
+        mkdir -p Robj
         Rscript scripts/runDeseq.R {input.counts} {input.metadata} {output.vsc} {output.nrc} {output.pca} {output.vol} {params.DE} {params.groupSz} {params.Type}
         touch {output.flag}
     
